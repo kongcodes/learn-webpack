@@ -1,5 +1,7 @@
 const { resolve } = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const minicssPlugin = require("mini-css-extract-plugin");
 module.exports = {
 	// 入口
 	// entry: "./src/index.js",
@@ -16,6 +18,10 @@ module.exports = {
 	},
 	mode: "development",
 	plugins: [
+		new CleanWebpackPlugin(),
+		new minicssPlugin({
+			filename: "index.css",
+		}),
 		new htmlWebpackPlugin({
 			template: "./public/index.html",
 			filename: "index.html",
@@ -27,4 +33,13 @@ module.exports = {
 			chunks: ["login"],
 		}),
 	],
+	module: {
+		rules: [
+			{
+				test: /\.css$/,
+				// use: ["style-loader", "css-loader"],
+				use: [minicssPlugin.loader, "css-loader"],
+			},
+		],
+	},
 };
