@@ -24,6 +24,9 @@ module.exports = {
 			chunks: ["index"],
 		}),
 	],
+	resolveLoader: {
+		modules: ["node_modules", "./myLoaders"],
+	},
 	module: {
 		rules: [
 			{
@@ -34,10 +37,29 @@ module.exports = {
 			{
 				test: /\.less$/,
 				use: [
-					minicssPlugin.loader,
-					"css-loader",
-					"postcss-loader",
-					"less-loader",
+					// minicssPlugin.loader,
+					// "css-loader",
+					// "postcss-loader",
+					// "less-loader",
+					// 替换成自己手写实现的loader
+					"mini-style-loader",
+					"mini-css-loader",
+					"mini-less-loader",
+				],
+			},
+			{
+				test: /\.js$/,
+				// use: [resolve(__dirname, "./myLoaders/k-loader.js")],
+				use: [
+					{
+						// loader: resolve(__dirname, "./myLoaders/k-loader.js"),
+						loader: "k-loader",
+						options: { title: "你好" },
+					},
+					{
+						// loader: resolve(__dirname, "./myLoaders/l-loader.js"),
+						loader: "l-loader",
+					},
 				],
 			},
 		],
