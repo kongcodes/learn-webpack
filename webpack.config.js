@@ -16,7 +16,9 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(),
 		new minicssPlugin({
-			filename: "index.css",
+			// filename: "index.css",
+			// 将css文件放到style目录下
+			filename: "style/index.css",
 		}),
 		new htmlWebpackPlugin({
 			template: "./public/index.html",
@@ -37,14 +39,14 @@ module.exports = {
 			{
 				test: /\.less$/,
 				use: [
-					// minicssPlugin.loader,
-					// "css-loader",
-					// "postcss-loader",
-					// "less-loader",
+					minicssPlugin.loader,
+					"css-loader",
+					"postcss-loader",
+					"less-loader",
 					// 替换成自己手写实现的loader
-					"mini-style-loader",
-					"mini-css-loader",
-					"mini-less-loader",
+					// "mini-style-loader",
+					// "mini-css-loader",
+					// "mini-less-loader",
 				],
 			},
 			{
@@ -61,6 +63,18 @@ module.exports = {
 						loader: "l-loader",
 					},
 				],
+			},
+			{
+				test: /\.(jpg|png|gif|webp)$/,
+				// use: "file-loader",
+				use: {
+					loader: "file-loader",
+					options: {
+						name: "[name].[ext]",
+						outputPath: "images", // 图片资源存放目录
+						publicPath: "../images", // 图片资源引入位置
+					},
+				},
 			},
 		],
 	},
