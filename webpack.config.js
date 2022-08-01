@@ -64,18 +64,36 @@ module.exports = {
 					},
 				],
 			},
+			// {
+			// 	test: /\.(jpg|png|gif|webp)$/,
+			// 	// use: "file-loader",
+			// 	use: {
+			// 		loader: "file-loader",
+			// 		options: {
+			// 			name: "[name].[ext]",
+			// 			outputPath: "images", // 图片资源存放目录
+			// 			publicPath: "../images", // 图片资源引入位置
+			// 		},
+			// 	},
+			// },
 			{
 				test: /\.(jpg|png|gif|webp)$/,
 				// use: "file-loader",
 				use: {
-					loader: "file-loader",
+					loader: "url-loader",
 					options: {
 						name: "[name].[ext]",
 						outputPath: "images", // 图片资源存放目录
 						publicPath: "../images", // 图片资源引入位置
+						esModule: false,
+						limit: 3 * 1024, // 单位：字节
 					},
 				},
 			},
+			// {
+			// 	test: /\.html$/,
+			// 	loader: "html-withimg-loader",
+			// },
 		],
 	},
 };
