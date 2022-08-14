@@ -20,7 +20,10 @@
 	},
 	"homepage": "https://github.com/kongcodes/learn-webpack#readme",
 	"devDependencies": {
+		"@babel/core": "^7.18.10",
+		"@babel/preset-env": "^7.18.10",
 		"autoprefixer": "^10.4.7",
+		"babel-loader": "^8.2.5",
 		"clean-webpack-plugin": "^4.0.0",
 		"css-loader": "^5.2.7",
 		"cssnano": "^5.1.12",
@@ -44,6 +47,7 @@
 		">1%"
 	],
 	"dependencies": {
+		"@babel/polyfill": "^7.12.1",
 		"image-webpack-loader": "^8.1.0"
 	}
 }

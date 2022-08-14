@@ -6,14 +6,13 @@ module.exports = {
 	// 入口
 	entry: {
 		index: './src/index.js',
-		detail: './src/detail.js', // 新增detail入口
 	},
 	// 出口
 	output: {
 		// 生成资源存放的位置；path 必须是绝对路径，默认是 dist目录
 		path: resolve(__dirname, './dist'),
 		// 生成的资源叫什么
-		filename: '[name].js',
+		filename: 'js/[name].js',
 	},
 	mode: 'development',
 	plugins: [
@@ -27,11 +26,6 @@ module.exports = {
 			template: './public/index.html',
 			filename: 'index.html',
 			chunks: ['index'],
-		}),
-		new htmlWebpackPlugin({
-			template: './public/detail.html',
-			filename: 'detail.html',
-			chunks: ['detail'],
 		}),
 	],
 	resolveLoader: {
@@ -57,21 +51,21 @@ module.exports = {
 					// "mini-less-loader",
 				],
 			},
-			{
-				test: /\.js$/,
-				// use: [resolve(__dirname, "./myLoaders/k-loader.js")],
-				use: [
-					{
-						// loader: resolve(__dirname, "./myLoaders/k-loader.js"),
-						loader: 'k-loader',
-						options: { title: '你好' },
-					},
-					{
-						// loader: resolve(__dirname, "./myLoaders/l-loader.js"),
-						loader: 'l-loader',
-					},
-				],
-			},
+			// {
+			// 	test: /\.js$/,
+			// 	// use: [resolve(__dirname, "./myLoaders/k-loader.js")],
+			// 	use: [
+			// 		{
+			// 			// loader: resolve(__dirname, "./myLoaders/k-loader.js"),
+			// 			loader: 'k-loader',
+			// 			options: { title: '你好' },
+			// 		},
+			// 		{
+			// 			// loader: resolve(__dirname, "./myLoaders/l-loader.js"),
+			// 			loader: 'l-loader',
+			// 		},
+			// 	],
+			// },
 			// {
 			// 	test: /\.(jpg|png|gif|webp)$/,
 			// 	// use: "file-loader",
@@ -117,6 +111,29 @@ module.exports = {
 			// 	test: /\.html$/,
 			// 	loader: "html-withimg-loader",
 			// },
+			{
+				test: /\.js$/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: [
+							[
+								'@babel/preset-env',
+								{
+									corejs: 2, // 版本
+									useBuiltIns: 'usage',
+									// 设置目标浏览器集合
+									// targets: {
+									// 	edge: '17',
+									// 	chrome: '67',
+									// 	firefox: '60',
+									// },
+								},
+							],
+						],
+					},
+				},
+			},
 		],
 	},
 }
