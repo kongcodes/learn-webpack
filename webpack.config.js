@@ -115,23 +115,6 @@ module.exports = {
 				test: /\.js$/,
 				use: {
 					loader: 'babel-loader',
-					options: {
-						presets: [
-							[
-								'@babel/preset-env',
-								{
-									corejs: 2, // 版本
-									useBuiltIns: 'usage',
-									// 设置目标浏览器集合
-									// targets: {
-									// 	edge: '17',
-									// 	chrome: '67',
-									// 	firefox: '60',
-									// },
-								},
-							],
-						],
-					},
 				},
 			},
 		],
