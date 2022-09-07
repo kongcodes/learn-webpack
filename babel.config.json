@@ -12,6 +12,8 @@
         // 	firefox: '60',
         // },
       }
-    ]
-  ]
+    ],
+    "@babel/preset-react"
+  ],
+  "sourceType": "unambiguous"
 }
