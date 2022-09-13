@@ -2,6 +2,7 @@ const { resolve } = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const minicssPlugin = require('mini-css-extract-plugin')
+const myWebpackPlugin = require('./myPlugins/my-webpack-plugin.js')
 module.exports = {
 	// 入口
 	entry: {
@@ -26,6 +27,9 @@ module.exports = {
 			template: './public/index.html',
 			filename: 'index.html',
 			chunks: ['index'],
+		}),
+		new myWebpackPlugin({
+			par: 1,
 		}),
 	],
 	resolveLoader: {
